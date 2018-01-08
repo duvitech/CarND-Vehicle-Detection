@@ -119,7 +119,7 @@ Here's an example result showing the heatmap from a series of frames of video, t
 ![alt text][image7]
 
 ### Here is a test on a single video frame utilizing the full pipeline:
-![alt text][image7]
+![alt text][image8]
 
 ---
 
