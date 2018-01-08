@@ -127,5 +127,5 @@ Here's an example result showing the heatmap from a series of frames of video, t
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+The approach that I took was mostly trial and error, the pipleline does work but contains flaws, a few times in the video you will see a false positive and the bounding box will sometimes group near by cars together.  Refining my classifier and algorithm to track different cars would make the pipeline more robust and less error prone. 
 
