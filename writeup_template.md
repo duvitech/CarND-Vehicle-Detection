@@ -19,11 +19,11 @@ The goals / steps of this project are the following:
 [image2]: ./output_images/vis_hog_car.jpg
 [image3]: ./output_images/vis_hog_notcar.jpg
 [image4]: ./examples/sliding_windows.jpg
-[image5]: ./examples/sliding_window.jpg
-[image6]: ./examples/bboxes_and_heat.png
-[image7]: ./examples/labels_map.png
-[image8]: ./examples/output_bboxes.png
-[video1]: ./project_video.mp4
+[image5]: ./examples/find_car_test.jpg
+[image6]: ./examples/heat_map_test.jpg
+[image7]: ./examples/search_test.jpg
+[image8]: ./examples/video_pipeline_test.jpg
+[video1]: ./examples/project_video.mp4
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
 ### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
@@ -52,31 +52,52 @@ Here is an example using the `YCrCb` color space and HOG parameters of `orientat
 
 #### 2. Explain how you settled on your final choice of HOG parameters.
 
-I tried various combinations of parameters and...
+I tried various combinations of parameters manually, varying the color space, HOG parameters and channels until accuracy and fit time where at reasonable levels.  The parameters that I am using are the following:
+
+|Parameter|Value|
+|:--------|----:|
+|Color Space|YCrCb|
+|HOG Orient|8|
+|HOG Pixels per cell|8|
+|HOG Cell per block|2|
+|HOG Channels|All|
+|Spatial bin size| (16,16)|
+|Histogram bins|32|
+|Histogram range|(0,256)|
+|Classifier|LinearSVC|
+|Scaler|StandardScaler|
+
 
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
-I trained a linear SVM using...
+I trained a linear SVM using the training sets provided by Udacity.  building_pipeline.ipynb is the notebook that contains all my work for building up the pipeline.  Section 2 of the  notebook are all functions used to develop the pipeline and section 3 is where we load the non-vehicle and vehicle training sets into memory. Training of the classifier occurs in section 4 using the fitModel function and HOG visualizations can be seen in section 5.  We randomize the test set and then perform an 80/20 split where 80% is used for training the classifier and 20% used for testing the accuracy of the classifier.
+
+Vehicle train image count: 8792
+Non-vehicle train image count: 8968
+
+Fitting time: 14.93 s, Accuracy: 0.9899
 
 ### Sliding Window Search
 
 #### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
-I decided to search random window positions at random scales all over the image and came up with this (ok just kidding I didn't actually ;):
+I decided to use the sliding window search with no overlap and ended up with very poor results, manually testing different parameters. After many iterations, the 85% overlap seemed to provide the best results.
 
-![alt text][image3]
+![alt text][image4]
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
-Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
+Ultimately I created a region of interest to narrow the search window down and searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here is an example image:
 
-![alt text][image4]
----
+Sliding Window:
+
+![alt text][image5]
+
 
 ### Video Implementation
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
-Here's a [link to my video result](./project_video.mp4)
+Here's a [link to my video result](./output_images/project_video.mp4)
 
 
 #### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
