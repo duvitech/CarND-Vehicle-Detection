@@ -18,12 +18,12 @@ The goals / steps of this project are the following:
 [image1]: ./output_images/sample_images.jpg
 [image2]: ./output_images/vis_hog_car.jpg
 [image3]: ./output_images/vis_hog_notcar.jpg
-[image4]: ./examples/sliding_windows.jpg
-[image5]: ./examples/find_car_test.jpg
-[image6]: ./examples/heat_map_test.jpg
-[image7]: ./examples/search_test.jpg
-[image8]: ./examples/video_pipeline_test.jpg
-[video1]: ./examples/project_video.mp4
+[image4]: ./output_images/sliding_windows.jpg
+[image5]: ./output_images/find_car_test.jpg
+[image6]: ./output_images/heat_map_test.jpg
+[image7]: ./output_images/search_test.jpg
+[image8]: ./output_images/video_pipeline_test.jpg
+[video1]: ./output_images/project_video.mp4
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
 ### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
